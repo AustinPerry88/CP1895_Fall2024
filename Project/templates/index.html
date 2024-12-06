@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Player Management</h1>
+    <a href="/add" class="button">Add New Player</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Bat Order</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>At Bats</th>
+                <th>Hits</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player[1] }}</td>
+                <td>{{ player[2] }}</td>
+                <td>{{ player[3] }}</td>
+                <td>{{ player[4] }}</td>
+                <td>{{ player[5] }}</td>
+                <td>{{ player[6] }}</td>
+                <td>
+                    <a href="/edit/{{ player[0] }}" class="button">Edit</a>
+                    <form action="/delete/{{ player[0] }}" method="post" style="display:inline;">
+                        <button type="submit" class="button danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
